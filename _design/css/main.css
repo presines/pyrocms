@@ -1,0 +1,128 @@
+/* CSS Document */
+
+body {
+	background-color:#222222;
+	color:#fff;
+}
+
+a {
+	color:#ffffff;
+}
+
+/* correcciones a baseline.css */
+p + p {
+text-indent: 0em;
+margin-top: 1em;
+}
+
+h3 {
+  margin-bottom: 18px;
+}
+
+
+hr {
+	height:1px;
+	background: #888;
+	margin-top: 6px;
+}
+
+ul {
+	margin-top:6px;
+}
+/* correcciones a baseline.css */
+
+#pagecontainer {
+	width:984px;
+}
+
+#header{
+	height:80px;
+	margin-bottom:18px;
+}
+
+#logo {
+	width:365px;
+	margin-top:12px;
+	float:left;
+}
+
+/* Top navigation */
+div#nav {
+	float: right;
+	width:400px;
+	text-align:right;
+	margin-top:62px;
+}
+
+#nav a {
+	text-decoration:none;
+}
+
+#nav a:hover {
+	text-decoration:underline;
+}
+
+
+
+div#maincontainer{
+	background-color:#222222;
+	background-image: url(../images/mainbg.png);
+	background-repeat: repeat-x;
+	width:897px;
+	padding:44px;
+}
+
+div#fptitle{
+	margin: 25px 0px;
+}
+
+div#fptext{
+	margin-bottom:50px;
+}
+
+#fptext .ez-fl{
+	width:273px;
+	margin-right:39px;
+}
+	
+.greentext {
+	color:#88983E;
+}
+
+/* JAC Carrousel */	
+
+.myJac .jac-content
+{
+    width:311px;
+} 
+
+.myJac .arrow-left, .myJac .arrow-right
+{
+ position:absolute;
+ bottom:5px;
+ z-index:5;
+ height:50px;
+ width:40px;
+ opacity: 100;
+}
+.myJac .arrow-left a, .myJac .arrow-right a
+{
+ display:block;
+ height:50px;
+ width:40px;
+ text-indent:-999em;
+}
+.myJac .arrow-left a:focus, .myJac .arrow-right a:focus
+{
+ outline:none;
+}
+.myJac .arrow-left
+{
+ left:-20px;
+ background:url(../images/jac-arrows.png) no-repeat center left;
+}
+.myJac .arrow-right
+{
+ right:-20px;
+ background:url(../images/jac-arrows.png) no-repeat center right;
+}      

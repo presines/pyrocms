@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SUSTENTABILIS</title>
+    <link rel="SHORTCUT ICON" href="http://www.eshopmx.com/sustentabilis/favicon.ico" />
+    
+    <link href="css/baseline.reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/baseline.base.css" rel="stylesheet" type="text/css" />
+    <link href="css/baseline.type.css" rel="stylesheet" type="text/css" />
+    <link href="css/ez.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery.jac.css" rel="stylesheet" type="text/css" />
+    <link href="css/nosotrostabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.jac.js"></script>
+</head>
+<body>
+<div class="ez-mw" id="pagecontainer">
+  <div class="ez-wr" id="header">
+      <div id="logo">
+        <a href="#"><img src="images/logo.png" /></a>
+      </div>
+      <div id="nav">
+        <a href="#">INICIO</a>&nbsp;
+        <a href="#">DIVISIONES</a>&nbsp;
+        <a href="#">PROYECTOS</a>&nbsp;
+        <a href="#">CONTACTO</a>
+        </ul>
+      </div>
+    </div>
+    <div class="ez-wr" id="maincontainer">
+      <div class="ez-box" id="fpimage">
+        <img src="images/nosotrosimage.jpg" />
+      </div>
+      <div class="ez-box" id="fptitle"><img src="images/nosotrostitle.png" alt="NOSOTROS SOMOS SUSTENTABILIS" /></div>
+      <div class="ez-wr" id="fptext">
+      	<div class="ez-box">
+            <ul class="nostabs">
+                <li><a href="#nuestros_compromisos">Nuestros Compromisos</a></li>
+                <li><a href="#Mision">Misión</a></li>
+                <li><a href="#Vision">Visión</a></li>
+                <li><a href="#Historia">Historia</a></li>
+            </ul>
+            <div class="tab_container">
+                <div id="nuestros_compromisos" class="tab_content">
+      <p>Nuestra promesa: estar comprometidos con el medio ambiente y nuestro entorno.  Buscar que todas nuestras actividades impacten positivamente a nuestros clientes, nuestros empleados, nuestros socios, nuestra comunidad y nuestro planeta. </p>
+                      <p>Para NUESTROS CLIENTES: ayudarlos a minimizar o eliminar el impacto que sus procesos puedan causar al medio ambiente, ayudándolos a hacerlos de una manera rentable. (sustentable?)</p>
+                      <p>Para NUESTROS EMPLEADOS: ante todo, cuidar su seguridad, buscando contribuir en su desarrollo personal y profesional, ofreciéndoles un entorno de trabajo justo, seguro y amigable. Y contagiarlos para que nuestro compromiso sustentable, sea también el suyo.</p>
+                      <p>Para NUESTROS SOCIOS, maximizar sus utilidades, cumpliendo siempre con los principios de responsabilidad bajo los cuales fue fundada la empresa.</p>
+                      <p>Para LA COMUNIDAD, hacer negocios de una manera ética, justa y responsable.</p>
+				</div>
+                <div id="Mision" class="tab_content">Hacer del cuidado del medio ambiente un negocio rentable para nuestros clientes y para nosotros.</div>
+                <div id="Vision" class="tab_content">
+                  <p>Ser una empresa líder en el mercado de ingeniería ambiental y conservación, que genere ingresos a través de la explotación sustentable de los recursos naturales y renovables, la prevención y el control de la contaminación.</p>
+                </div>
+                <div id="Historia" class="tab_content">
+					<p>Sustentabilis nace en el año 2001 bajo el nombre de Mir Ambiental con una fundada inquietud en detener y revertir el deterioro ambiental. Esto ayudó a estructurar las acciones de la empresa, comenzando con un cambio cultural y concluyendo con soluciones tangibles, es decir, soluciones integrales a favor del medio ambiente, como plantas de tratamiento de agua residual, y otros productos y servicios: cosechado de suelos con aguas pluviales, planes de manejo sustentable, estudios de impacto ambiental, techos verdes y energías limpias.</p>
+					<p>Sustentabilis opera con una filosofía basada en fundamentos sustentables, buscando un beneficio económico, social y ambiental, con tecnologías apropiadas y con procesos de mejora continua bajo principios de confiabilidad, calidad y eficiencia.</p>
+                </div>
+            </div>
+            
+        </div>
+      </div>
+  </div>
+</div>	
+<script type="application/javascript">
+				$(document).ready(function() {
+					//When page loads...
+					$(".tab_content").hide(); //Hide all content
+					$("ul.nostabs li:first").addClass("active").show(); //Activate first tab
+					$(".tab_content:first").show(); //Show first tab content
+					//On Click Event
+					$("ul.nostabs li").click(function() {
+						$("ul.nostabs li").removeClass("active"); //Remove any "active" class
+						$(this).addClass("active"); //Add "active" class to selected tab
+						$(".tab_content").hide(); //Hide all tab content
+				
+						var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+						$(activeTab).fadeIn(); //Fade in the active ID content
+						return false;
+					});
+				});
+			</script>			
+</body>
+</html>
+
+

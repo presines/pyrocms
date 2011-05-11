@@ -1,0 +1,52 @@
+/* CSS Document */
+ul.nostabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 38px; /*--Set height of tabs--*/
+	border: none;
+	width: 100%;
+	top: 0px;
+}
+ul.nostabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 35px; /*--Subtract 1px from the height of the unordered list--*/
+	line-height: 31px; /*--Vertically aligns the text within the tab--*/
+	border: none;
+	margin-right:3px;
+	margin-bottom: -3px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #181818;
+}
+ul.nostabs li a {
+	text-decoration: none;
+	display: block;
+	font-size: 1.2em;
+	padding: 0 20px;
+	border: none;
+	outline: none;
+	height:100%
+}
+ul.nostabs li a:hover {
+	background: #000;
+}
+html ul.nostabs li.active, html ul.nostabs li.active a:hover  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #181818;
+	border-bottom: 3px solid #181818; /*--Makes the active tab look like it's connected with its content--*/
+}
+
+.tab_container {
+	border:  none;
+	overflow: hidden;
+	clear: both;
+	float: left; width: 100%;
+	background: #181818;
+}
+.tab_content {
+	padding: 20px;
+	font-size: 1.2em;
+}
