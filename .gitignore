@@ -2,6 +2,7 @@
 .buildpath
 .project
 .settings
+_notes
 system/pyrocms/cache/*.*
 system/pyrocms/cache/*_m/*
 system/pyrocms/cache/*_lib/*
@@ -10,7 +11,10 @@ system/pyrocms/cache/dwoo/compiled/*.php
 system/pyrocms/cache/image_files/*
 system/pyrocms/cache/simplepie/*.spc
 system/pyrocms/cache/twitter/*
+system/pyrocms/cache/*
 system/pyrocms/config/database.php
 system/pyrocms/logs/log-*.php
 nbproject/
 uploads/*
+.idea
+_stuff/
