@@ -13,7 +13,7 @@ class Products_categories_m extends MY_Model
 
     public function get_featured(){
         $this->db->select("*, 'products/category/' as `url`");
-		$this->db->order_by('ordering', 'DESC');
+		$this->db->order_by('ordering', 'ASC');
         $this->db->where('featured',1);
         $query=$this->db->get($this->_table);
 
