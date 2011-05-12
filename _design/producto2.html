@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SUSTENTABILIS</title>
+    <link rel="SHORTCUT ICON" href="http://www.eshopmx.com/sustentabilis/favicon.ico" />
+    
+    <link href="css/baseline.reset.css" rel="stylesheet" type="text/css" />
+    <link href="css/baseline.base.css" rel="stylesheet" type="text/css" />
+    <link href="css/baseline.type.css" rel="stylesheet" type="text/css" />
+    <link href="css/ez.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery.jac.css" rel="stylesheet" type="text/css" />
+    <link href="css/nosotrostabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.jac.js"></script>
+    <script type="text/javascript" src="js/jquery.jac.js"></script>
+    <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    <link rel="stylesheet" href="js/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/products.css" rel="stylesheet" type="text/css" />
+    <link  href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css" >
+    
+</head>
+<body>
+<div class="ez-mw" id="pagecontainer">
+  <div class="ez-wr" id="header">
+      <div id="logo">
+        <a href="#"><img src="images/logo.png" /></a>
+      </div>
+      <div id="nav">
+        <a href="#">INICIO</a>&nbsp;
+        <a href="#">DIVISIONES</a>&nbsp;
+        <a href="#">PROYECTOS</a>&nbsp;
+        <a href="#">CONTACTO</a>
+        </ul>
+      </div>
+    </div>
+    <div class="ez-wr" id="maincontainer">
+      <div id="prods_breadcrumb" >
+    	<p><a>Agua</a> &gt;&nbsp;<a href="#">Categoría</a> &gt;&nbsp;<a  href="#">Sub categoría</a></p>
+      </div>
+      <div class="prods_divheader">
+      	<div id="prods_full_carrousel">
+        <div class="myJacP">
+            <ul>
+                <li><a href="images/nosotrosimage.jpg" title="Imagen genérica" class="divthumb"><img src="images/nosotrosimage.jpg" /></a></li>
+                <li><a href="images/prod_image1.jpg" title="Diagrama de procesos" class="divthumb"><img src="images/prod_image1.jpg" alt="Image 1"/></a></li>
+                <li><a href="images/prod_image1.jpg" title="El agua entra por A, sigue su camino y termina en B" class="divthumb"><img src="images/prod_image1.jpg" alt="Image 2"/></a></li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+			function init() { 
+				// fancybox options
+				$("a.divthumb").fancybox({
+					'hideOnContentClick': true,
+					'titlePosition' : 'inside'
+				});             
+				// carousel options
+				var o = {
+					enableMouse: false,
+					childSizeFixed:false
+				};
+				// Setup galleries
+				$(".myJacP").jac(o);  
+			}
+					
+			$(init); // on DOM ready  
+		</script>
+        	
+        </div>
+      	<div class="prods_title_full"><h2>Plantas de Tratamiento de Aguas Negras</h2></div>
+      </div>
+      <div class="ez-wr" id="fptext">
+      	<div class="ez-box">
+            <ul class="nostabs">
+                <li><a href="#tab1">Descripción</a></li>
+                <li><a href="#tab2">Aplicaciones</a></li>
+            </ul>
+            <div class="tab_container">
+                <div id="tab1" class="tab_content">
+      <p>Nuestra promesa: estar comprometidos con el medio ambiente y nuestro entorno.  Buscar que todas nuestras actividades impacten positivamente a nuestros clientes, nuestros empleados, nuestros socios, nuestra comunidad y nuestro planeta. </p>
+                      <p>Para NUESTROS CLIENTES: ayudarlos a minimizar o eliminar el impacto que sus procesos puedan causar al medio ambiente, ayudándolos a hacerlos de una manera rentable. (sustentable?)</p>
+                      <p>Para NUESTROS EMPLEADOS: ante todo, cuidar su seguridad, buscando contribuir en su desarrollo personal y profesional, ofreciéndoles un entorno de trabajo justo, seguro y amigable. Y contagiarlos para que nuestro compromiso sustentable, sea también el suyo.</p>
+                      <p>Para NUESTROS SOCIOS, maximizar sus utilidades, cumpliendo siempre con los principios de responsabilidad bajo los cuales fue fundada la empresa.</p>
+                      <p>Para LA COMUNIDAD, hacer negocios de una manera ética, justa y responsable.</p>
+				</div>
+                <div id="tab2" class="tab_content">Hacer del cuidado del medio ambiente un negocio rentable para nuestros clientes y para nosotros.</div>
+            </div>
+            
+        </div>
+      </div>
+  </div>
+</div>	
+<script type="application/javascript">
+				$(document).ready(function() {
+					//When page loads...
+					$(".tab_content").hide(); //Hide all content
+					$("ul.nostabs li:first").addClass("active").show(); //Activate first tab
+					$(".tab_content:first").show(); //Show first tab content
+					//On Click Event
+					$("ul.nostabs li").click(function() {
+						$("ul.nostabs li").removeClass("active"); //Remove any "active" class
+						$(this).addClass("active"); //Add "active" class to selected tab
+						$(".tab_content").hide(); //Hide all tab content
+				
+						var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+						$(activeTab).fadeIn(); //Fade in the active ID content
+						return false;
+					});
+				});
+			</script>			
+</body>
+</html>
+
+
