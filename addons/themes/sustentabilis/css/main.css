@@ -92,7 +92,7 @@ div#fptext{
 	color:#88983E;
 }
 
-/* JAC Carrousel */	
+/* JAC Carrousel Frontpage  */
 
 .myJac .jac-content
 {
@@ -130,7 +130,49 @@ div#fptext{
 {
  right:-20px;
  background:url(../img/jac-arrows.png) no-repeat center right;
-}      
+}
+
+/* JAC Carrousel  for products*/
+
+.myJacP .jac-content
+{
+
+}
+
+#prods_full_carrousel .jac {
+	height: 286px;
+}
+
+.myJacP .arrow-left, .myJacP .arrow-right
+{
+ position:absolute;
+ bottom:5px;
+ z-index:5;
+ height:50px;
+ width:40px;
+ opacity: 100;
+}
+.myJacP .arrow-left a, .myJacP .arrow-right a
+{
+ display:block;
+ height:50px;
+ width:40px;
+ text-indent:-999em;
+}
+.myJacP .arrow-left a:focus, .myJacP .arrow-right a:focus
+{
+ outline:none;
+}
+.myJacP .arrow-left
+{
+ left:-20px;
+ background:url(../images/jac-arrows.png) no-repeat center left;
+}
+.myJacP .arrow-right
+{
+ right:-20px;
+ background:url(../images/jac-arrows.png) no-repeat center right;
+}
 
 /*
 *
@@ -207,3 +249,115 @@ div.error-box p {
 div.error-box {
 	margin-bottom:18px;
 }
+
+/* Product page */
+
+div.prods_headerimg {
+	float:left;
+	width:585px;
+}
+
+div.prods_headerside {
+	float:right;
+	width:272px;
+}
+
+div.prods_headerside #titlediv  {
+	margin-bottom:12px;
+}
+div.prods_headerside #typesel {
+	margin-bottom:24px;
+}
+
+div.prods_headerside #typesel a {
+	text-decoration:none;
+	font-size: 14px;
+}
+
+div.prods_headerside #typesel img {
+	margin-bottom:-1px;
+}
+
+div.prods_headerside #descrdiv {
+	height:208px;
+	overflow:auto;
+}
+
+div#prods_breadcrumb {
+	clear:both;
+	width:100%;
+	margin-bottom:12px;
+	margin-top:-19px;
+}
+
+div#prods_breadcrumb a {
+	font-size: 0.875em;
+	text-decoration: none;
+	color:#ccc;
+}
+
+div#prods_breadcrumb a:hover {
+	color:#fff;
+	text-decoration:underline;
+}
+
+div.prods_catalog {
+	width:936px;
+	clear:both;
+	padding-top:30px;
+}
+
+div.prods_catalog_item {
+	float:left;
+	height:163px;
+	width:273px;
+	margin: 0 38px 30px 0;
+
+}
+
+div.prods_catalog_item_title {
+	position: relative;
+	top: -52px;
+	padding: 0 7px;
+	background: #222222;
+	width: 233px;
+	height:44px;
+}
+
+div.prods_catalog_item_title span {
+	display: table-cell;
+	vertical-align: middle;
+	height:44px;
+	text-transform:uppercase;
+}
+
+div.prods_catalog_item_title a {
+	text-decoration: none;
+}
+
+div.prods_headerside h2{
+  font-family: 'Raleway', serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: normal;
+  text-shadow: none;
+  text-decoration: none;
+  text-transform: upper;
+  line-height: 1.2;
+}
+
+div#maincontainer h2{
+  font-family: 'Raleway', serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: normal;
+  text-shadow: none;
+  text-decoration: none;
+  text-transform: upper;
+  line-height: 1.2;
+}
+
+a.divthumb img{
+	margin-right:16px;
+}
+
