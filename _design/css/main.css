@@ -89,7 +89,7 @@ div#fptext{
 	color:#88983E;
 }
 
-/* JAC Carrousel */	
+/* JAC Carrousel front page */	
 
 .myJac .jac-content
 {
@@ -122,6 +122,49 @@ div#fptext{
  background:url(../images/jac-arrows.png) no-repeat center left;
 }
 .myJac .arrow-right
+{
+ right:-20px;
+ background:url(../images/jac-arrows.png) no-repeat center right;
+}      
+
+
+/* JAC Carrousel  for products*/	
+
+.myJacP .jac-content
+{
+
+} 
+
+.jac {
+	height: 286px;
+}
+
+.myJacP .arrow-left, .myJacP .arrow-right
+{
+ position:absolute;
+ bottom:5px;
+ z-index:5;
+ height:50px;
+ width:40px;
+ opacity: 100;
+}
+.myJacP .arrow-left a, .myJacP .arrow-right a
+{
+ display:block;
+ height:50px;
+ width:40px;
+ text-indent:-999em;
+}
+.myJacP .arrow-left a:focus, .myJacP .arrow-right a:focus
+{
+ outline:none;
+}
+.myJacP .arrow-left
+{
+ left:-20px;
+ background:url(../images/jac-arrows.png) no-repeat center left;
+}
+.myJacP .arrow-right
 {
  right:-20px;
  background:url(../images/jac-arrows.png) no-repeat center right;
