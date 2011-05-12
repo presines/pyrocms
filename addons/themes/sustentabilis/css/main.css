@@ -76,7 +76,13 @@ div#maincontainer{
 }
 
 div#fptitle{
+    font: 'Raleway', sans-serif;
 	margin: 25px 0;
+}
+
+div#fptitle h2{
+    font: 'Raleway', sans-serif;
+
 }
 
 div#fptext{
@@ -342,7 +348,7 @@ div.prods_headerside h2{
   font-weight: normal;
   text-shadow: none;
   text-decoration: none;
-  text-transform: upper;
+  text-transform: uppercase;
   line-height: 1.2;
 }
 
@@ -353,7 +359,7 @@ div#maincontainer h2{
   font-weight: normal;
   text-shadow: none;
   text-decoration: none;
-  text-transform: upper;
+  text-transform: uppercase;
   line-height: 1.2;
 }
 
