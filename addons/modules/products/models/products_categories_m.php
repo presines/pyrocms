@@ -12,13 +12,24 @@ class Products_categories_m extends MY_Model
 	protected $_table = 'product_categories';
 
     public function get_featured(){
-        $this->db->select("*, 'products/category/' as `url`");
+        $this->db->select("*, CONCAT('products/category/',`slug`) as `url`");
 		$this->db->order_by('ordering', 'ASC');
         $this->db->where('featured',1);
         $query=$this->db->get($this->_table);
 
 		return $query->result();    
     }
+
+    public function get_children($id=0){
+        $this->db->select("*, CONCAT('products/category/',`slug`) as `url`");
+		$this->db->order_by('ordering', 'ASC');
+        $this->db->where('parent_id',$id);
+        $query=$this->db->get($this->_table);
+
+		return $query->result();
+    }
+
+    
 	/**
 	 * Insert a new category into the database
 	 * @access public

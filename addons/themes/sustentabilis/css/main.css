@@ -285,7 +285,6 @@ div.prods_headerside #typesel img {
 }
 
 div.prods_headerside #descrdiv {
-	height:208px;
 	overflow:auto;
 }
 
@@ -374,17 +373,6 @@ div.prods_featured_item_title a {
     line-height: 1.2;
 }
 
-div.prods_headerside h2{
-  font-family: 'Raleway', serif;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: normal;
-  text-shadow: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  line-height: 1.2;
-}
-
 div#maincontainer h2{
   font-family: 'Raleway', serif;
   font-size: 36px;
@@ -394,6 +382,20 @@ div#maincontainer h2{
   text-decoration: none;
   text-transform: uppercase;
   line-height: 1.2;
+}
+
+div.prods_headerside h2,
+div#titlediv h2 {
+  font-family: 'Raleway', serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: normal;
+  text-shadow: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-top:-9px;
+  border-bottom: 1px solid gray;
 }
 
 a.divthumb img{

@@ -1,19 +1,15 @@
 <?php  defined('BASEPATH') OR exit('No direct script access allowed');
-class Ads_images_m extends MY_Model {
+class Products_images_m extends MY_Model {
 
-	protected $_table = 'ads_images';
-    protected $images_folder='uploads/ads_images';
+	protected $_table = 'products_images';
+    protected $images_folder='uploproducts/products_images';
 
 
-    public function get_ad_first($ad_id){
-		$this->db->where(array('ad_id' => $ad_id));
-		return $this->db->get($this->_table)->row();
-    }
-
-    public function get_images_by_ad($ad_id){
-		$this->db->where(array('ad_id' => $ad_id));
+    public function get_images($product_id){
+		$this->db->where(array('$product_id' => $product_id));
 		return $this->db->get($this->_table);
     }
+
 	// ------------------------------------------------------------------------
 
 	/**
@@ -111,4 +107,4 @@ class Ads_images_m extends MY_Model {
 	}
 }
 
-/* End of file ads_images_m.php */
+/* End of file products_images_m.php */
