@@ -3,3 +3,44 @@ form.crud label.description {
     display: block;
     float: none;
 }
+
+
+/*make the uniform file input usable */
+
+form.crud ul li div
+{
+	width: auto;
+}
+
+/*Style the manage page thumbnails*/
+
+#product_images_list
+{
+	margin-left:50px;
+	list-style:none;
+}
+
+#product_images_list li
+{
+	float: 		left;
+	margin:		5px;
+	padding: 	5px;
+	height:		100px;
+}
+
+#product_images_list img
+{
+	border: 	1px solid #9c9fa1;
+}
+
+#product_images_list img:hover
+{
+	border: 	1px solid #3A4043;
+	cursor:		pointer;
+}
+
+.images-placeholder #product_images_list img:hover
+{
+	border: 	1px solid #9c9fa1;
+	cursor:		default;
+}

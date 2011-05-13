@@ -78,6 +78,7 @@ class Admin extends Admin_Controller {
 
 		$this->load->model('products_m');
 		$this->load->model('products_categories_m');
+		$this->load->model('products_images_m');
 		$this->lang->load('products');
 		$this->lang->load('categories');
 
@@ -276,7 +277,7 @@ class Admin extends Admin_Controller {
 				$product->$field = $this->form_validation->$field;
 			}
 		}
-
+        $product_images=$this->products_images_m->get_images($product->id)->result();
 		
 		// Load WYSIWYG editor
 		$this->template
@@ -284,6 +285,7 @@ class Admin extends Admin_Controller {
 				->append_metadata($this->load->view('fragments/wysiwyg', $this->data, TRUE))
 				->append_metadata(js('products_form.js', 'products'))
 				->set('product', $product)
+				->set('product_images', $product_images)
 				->build('admin/form');
 	}
 
@@ -504,4 +506,26 @@ class Admin extends Admin_Controller {
 				->set('blog', $results)
 				->build('admin/index');
 	}
+    
+
+    /**
+     * Sort images in an existing gallery
+     *
+     * @author Jerel Unruh - PyroCMS Dev Team
+     * @access public
+     */
+    public function ajax_update_order()
+    {
+        $ids = explode(',', $this->input->post('order'));
+
+        $i = 1;
+        foreach ($ids as $id)
+        {
+            $this->products_images_m->update($id, array(
+                'ordering' => $i
+            ));
+            ++$i;
+        }
+    }
+    
 }

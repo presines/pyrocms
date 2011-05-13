@@ -285,7 +285,7 @@ div.prods_headerside #typesel img {
 }
 
 div.prods_headerside #descrdiv {
-	overflow:auto;
+	/*overflow:auto;*/
 }
 
 div#prods_breadcrumb {

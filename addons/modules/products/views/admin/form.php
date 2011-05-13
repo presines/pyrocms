@@ -58,6 +58,34 @@
                 <label for="nothing"><?php echo lang('products_thumbnail_path_label'); ?></label>
                 <?php echo form_upload('thumbnail'); ?>
             </li>
+            <?php if (isset($product_images) && $product_images): ?>
+            <li class="images-manage even">
+                <label for="product_images"><?php echo lang('products_images_area_label'); ?></label>
+                <div class="clear-both"></div>
+                <ul id="product_images_list">
+                    <?php if ( $product_images !== FALSE ): ?>
+                    <?php foreach ( $product_images as $image ): ?>
+                    <li>
+                        <a href="<?php echo site_url() . 'admin/products/image_edit/' . $image->id; ?>" class="upload_colorbox">
+                            <img src="<?php echo site_url() . 'products/tiny_thumbnail/' . $image->filename; ?> " alt="<?php echo $image->name ?>" title="<?php echo 'Title: ' . $image->name; ?>" />
+                            <?php echo form_hidden('action_to[]', $image->id); ?>
+                        </a>
+                    </li>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+                </ul>
+                <div class="clear-both"></div>
+            </li>
+            <?php endif; ?>
+            
+            <li style="display: none;" class="images-placeholder">
+                <label for="product_images"><?php echo lang('products_preview_label'); ?></label>
+                <div class="clear-both"></div>
+                <ul id="product_images_list">
+
+                </ul>
+                <div class="clear-both"></div>
+            </li>
 		</ol>
         <?php endif; ?>
 	</div>

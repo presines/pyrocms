@@ -87,11 +87,7 @@ class Products extends Public_Controller
 			$product->category->title = '';
 		}
 
-		if($query	= $this->products_images_m->get_images($product->id)) {
-            $product_images=$query->result();
-        } else {
-            $product_images=array();
-        }
+		$product_images	= $this->products_images_m->get_images($product->id);
 		
 		$this->session->set_flashdata(array('referrer' => $this->uri->uri_string));
 
@@ -261,6 +257,15 @@ class Products extends Public_Controller
 
     /******** images  ********/
 
+    public function tiny_thumbnail($filename){
+        if($img=$this->products_images_m->get_by('filename',$filename)){
+            return $this->image($img->id,167,100);
+        } else {
+            header('Content-type: image/gif');
+            readfile(FCPATH .'addons/modules/products/img/noimage96.gif');
+        }
+    }
+
     public function thumbnail($filename){
         if($img=$this->products_images_m->get_by('filename',$filename)){
             return $this->image($img->id,273,1000);
@@ -308,7 +313,7 @@ class Products extends Public_Controller
 
 			// CONFIGURE IMAGE LIBRARY
 			$config['image_library']    = 'gd2';
-			$config['source_image']     = 'uploproducts/products/images/' . $file->filename;
+			$config['source_image']     = 'uploads/products/images/' . $file->filename;
 			$config['new_image']        = $image_thumb;
 			$config['maintain_ratio']   = TRUE;
 			$config['height']           = $height;
@@ -557,7 +562,7 @@ class Products extends Public_Controller
       $images_data=array();
       /* Create the config for upload library */
       /* (pretty self-explanatory) */
-      $config['upload_path'] = FCPATH .'uploproducts/products_images/'; /* NB! create this dir! */
+      $config['upload_path'] = FCPATH .'uploads/products/images/'; /* NB! create this dir! */
       $config['allowed_types'] = 'gif|jpg|png|jpeg';
       $config['max_size']  = '2048';
       $config['max_width']  = '0';

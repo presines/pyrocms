@@ -19,6 +19,7 @@ $lang['products_options_label'] 				= 'Opciones';
 $lang['products_title_label'] 					= 'Título';
 $lang['products_slug_label'] 					= 'URL';
 $lang['products_thumbnail_path_label'] 			= 'Thumbnail';
+$lang['products_images_area_label']			        = 'Imágenes (arrastre y suelte para ordenar, click para editar)';
 $lang['product_description_label'] 				= 'Introducción';
 $lang['products_draft_label'] 					= 'Borrador';
 $lang['products_live_label'] 					= 'Publicado';
@@ -55,6 +56,13 @@ $lang['products_twitter_posted']				= 'Escrito "%s" %s';
 
 // date
 $lang['products_archive_date_format']			= "%B %Y";
+
+// product_images
+$lang['products_img_file_label'] 					= 'Archivo';
+$lang['products_img_name_label'] 					= 'Nombre';
+$lang['products_img_description_label'] 			= 'Descripción';
+$lang['products_img_type_label'] 					= 'Tipo';
+$lang['products_img_product_label'] 				= 'Producto';
 
 /* End of file products_lang.php */
 /* Location: ./system/pyrocms/modules/blog/language/spanish/products_lang.php */
