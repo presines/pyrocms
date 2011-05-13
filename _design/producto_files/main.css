@@ -306,7 +306,7 @@ div#prods_breadcrumb a:hover {
 	text-decoration:underline;
 }
 
-div.prods_catalog {
+div.prods_catalog  {
 	width:936px;
 	clear:both;
 	padding-top:30px;
@@ -338,6 +338,33 @@ div.prods_catalog_item_title span {
 
 div.prods_catalog_item_title a {
 	text-decoration: none;
+}
+ /* Vista de Producto detail_1 */
+
+
+div.prods_detail_1  {
+	width:897px;
+	clear:both;
+	padding-top:30px;
+	text-align:justify;
+}
+
+div.prods_detail_1  p{
+	text-align:justify;
+}
+
+div.prods_detail_1 div.prods_thumb {
+	height:163px;
+	width:273px;
+	margin: 0 0 30px;
+
+}
+
+
+div.prods_detail_1 #thumb_container {
+	float:right;
+	width:273px;
+	margin-left:38px;
 }
 
  /* front page featured items */
