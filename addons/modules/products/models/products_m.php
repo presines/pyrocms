@@ -124,4 +124,21 @@ class Products_m extends MY_Model {
 		}
 	}
 
+	function check_exists($field, $value = '', $id = 0)
+	{
+		if (is_array($field))
+		{
+			$params = $field;
+			$id = $value;
+		}
+		else
+		{
+			$params[$field] = $value;
+		}
+		$params['id !='] = (int) $id;
+
+		return parent::count_by($params) == 0;
+	}
+
+
 }

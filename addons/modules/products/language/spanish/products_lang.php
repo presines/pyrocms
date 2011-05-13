@@ -3,33 +3,30 @@
 // labels
 $lang['products_posted_label']					= 'Escrito';
 $lang['products_category_label'] 				= 'Categoría';
-$lang['products_product_label'] 					= 'Producto';
+$lang['products_product_label'] 				= 'Producto';
 $lang['products_date_label'] 					= 'Fecha';
-$lang['products_time_label'] 					= 'Hora';
-$lang['products_status_label'] 					= 'Estado';
-$lang['products_actions_label'] 				    = 'Acciones';
+$lang['products_status_label'] 					= 'Estatus';
+$lang['products_ordering_label'] 				= 'Orden';
+$lang['products_actions_label'] 				= 'Acciones';
 $lang['products_view_label'] 					= 'Ver';
-$lang['products_preview_label'] 				    = 'Vista previa';
+$lang['products_preview_label'] 				= 'Vista previa';
 $lang['products_edit_label'] 					= 'Editar';
 $lang['products_delete_label'] 					= 'Borrar';
-$lang['products_content_label'] 				    = 'Contenido';
-$lang['products_options_label'] 				    = 'Opciones';
+$lang['products_content_label'] 				= 'Contenido';
+$lang['products_body_label'] 				    = 'Texto';
+$lang['products_images_label'] 				    = 'Imágenes';
+$lang['products_options_label'] 				= 'Opciones';
 $lang['products_title_label'] 					= 'Título';
 $lang['products_slug_label'] 					= 'URL';
-$lang['products_intro_label'] 					= 'Introducción';
+$lang['products_thumbnail_path_label'] 			= 'Thumbnail';
+$lang['product_description_label'] 				= 'Introducción';
 $lang['products_draft_label'] 					= 'Borrador';
 $lang['products_live_label'] 					= 'Publicado';
 $lang['products_no_category_select_label'] 		= '-- Ninguna --';
 $lang['products_new_category_label'] 			= 'Agregar una categoría';
-$lang['products_subscripe_to_rss_label'] 		= 'Suscribir al RSS';
-$lang['products_all_products_label'] 				= 'Todos los productos';
-$lang['products_products_of_category_suffix']		= ' productos';
-$lang['products_rss_name_suffix'] 				= ' Noticias';
-$lang['products_rss_category_suffix'] 			= ' Noticias';
+$lang['products_all_products_label'] 		    = 'Todos los productos';
+$lang['products_products_of_category_suffix']	= ' productos';
 $lang['products_posted_label'] 					= 'Escrito en';
-$lang['products_author_name_label'] 			    = 'Nombre del autor';
-$lang['products_read_more_label'] 				= 'Leer más &raquo;';
-$lang['products_comments_enabled_label']         = 'Comments Enabled'; #translate
 
 // titles
 $lang['products_create_title'] 					= 'Crear un producto';
@@ -55,7 +52,6 @@ $lang['products_delete_error'] 					= 'No se han eliminado productos.';
 $lang['products_already_exist_error'] 			= 'Ya existe un producto con esta URL.';
 
 $lang['products_twitter_posted']				= 'Escrito "%s" %s';
-$lang['products_twitter_error'] 				= 'Error de Twitter';
 
 // date
 $lang['products_archive_date_format']			= "%B %Y";

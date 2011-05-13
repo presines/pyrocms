@@ -1,0 +1,5 @@
+/* A few styles to ajust default form styles for the products module */
+form.crud label.description {
+    display: block;
+    float: none;
+}
