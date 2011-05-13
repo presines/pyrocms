@@ -4,7 +4,7 @@
 		<h3><?php echo sprintf(lang('products_edit_title'), $product->title); ?></h3>
 <?php endif; ?>
 
-<?php echo form_open(uri_string(), 'class="crud"'); ?>
+<?php echo form_open_multipart(uri_string(), 'class="crud"'); ?>
 
 <div class="tabs">
 
@@ -55,8 +55,8 @@
         <?php else: ?>
         <ol>
             <li>
-                <label for="nothing"><?php echo lang('files.file_label'); ?></label>
-                <?php echo form_upload('userfile'); ?>
+                <label for="nothing"><?php echo lang('products_thumbnail_path_label'); ?></label>
+                <?php echo form_upload('thumbnail'); ?>
             </li>
 		</ol>
         <?php endif; ?>

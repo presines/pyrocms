@@ -15,6 +15,10 @@ class Admin extends Admin_Controller {
 	 */
 	protected $id = 0;
 
+	private $_path 		= '';
+	private $_type 		= NULL;
+	private $_ext 		= NULL;
+
 	/**
 	 * Array that contains the validation rules
 	 * @access protected
@@ -204,18 +208,48 @@ class Admin extends Admin_Controller {
 
 
 		$this->id = $product->id;
-		
+		$thumbnail_path=$product->thumbnail_path;
+        
 		if ($this->form_validation->run())
 		{
 
             // We are uploading a new file
-			if ( ! empty($_FILES['userfile']['name'])){
+			if ( ! empty($_FILES['thumbnail']['name'])){
+                // Setup upload config
+				$this->load->library('upload', array(
+					'upload_path'	=> FCPATH . 'uploads/products/thumbnails/',
+					'allowed_types'	=> 'gif|jpg|png',
+                    'max_size' => '1024'
+				));
+                if ($this->upload->do_upload('thumbnail')){
+                    $data = $this->upload->data();
+
+                    /* Create the config for image library */
+                    $configThumb = array();
+                    $configThumb['image_library'] = 'gd2';
+                    $configThumb['source_image'] = '';
+                    $configThumb['create_thumb'] = false;
+                    $configThumb['maintain_ratio'] = TRUE;
+                    /* Set the height and width or thumbs */
+                    $configThumb['width'] = 273;
+                    $configThumb['height'] = 1000;
+                    /* Load the image library */
+                    $this->load->library('image_lib');
+                    $configThumb['source_image'] = $data['full_path'];
+                    $this->image_lib->initialize($configThumb);
+                    $this->image_lib->resize();
+
+                    $thumbnail_path=$data['file_name'];
+                } else {
+                    $this->data->messages['error'] = $this->upload->display_errors();
+                }
+            }
 
 			$result = $this->products_m->update($id, array(
 				'product_category_id'		=> $this->input->post('product_category_id'),
 				'slug'				=> $this->input->post('slug'),
 				'title'				=> $this->input->post('title'),
-				'thumbnail_path'	=> $this->input->post('thumbnail_path'),
+				'thumbnail_path'	=> $thumbnail_path,
 				'description'		=> $this->input->post('description'),
 				'body'				=> $this->input->post('body'),
 				'status'			=> $this->input->post('status')
