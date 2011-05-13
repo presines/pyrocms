@@ -108,7 +108,7 @@ class Products extends Public_Controller
 			->set_breadcrumb($product->title)
             ->set_partial('detail_1_thumbs', 'partials/detail_1_thumbs')
 			->set('product', $product)
-            ->set('product_images', $product_images)
+            ->set('images', $product_images)
 			->build('view', $this->data);
 	}	
 
@@ -258,119 +258,37 @@ class Products extends Public_Controller
 	}
 
 
-    /*
-     * AJAX function
-     *
-     * Returns a select field with the options filtered from the parent.
-     */
-    function field_select(){
-        $field=$_GET['field'];
-        $value=$_GET['value'];
-        $parent=$_GET['parent'];
-
-        switch($field){
-            case 'city':
-                $options=$this->products_fields_m->counties_list($parent);
-                echo  form_dropdown('city',$options,$value,'id="products_city"');
-                break;
-            case 'ad_city':
-                $options=$this->products_fields_m->counties_list($parent);
-                echo  form_dropdown('ad_city',$options,$value,'id="products_ad_city"');
-                break;
-            case 'duration':
-                $options=$this->products_prices_m->options_list_by_category($parent);
-                echo  form_dropdown('duration',$options,$value,'id="products_duration"');
-                break;
-        }
-    }
-
-    /*
-     * AJAX function
-     *
-     * Returns the price text acording to submited values.
-     *
-     */
-    function price_text(){
-        $product_category_id=$_GET['product_category_id'];
-        $duration=$_GET['duration'];
-        $starred=$_GET['starred'];
-
-        echo $this->get_ad_price($product_category_id,$duration,$starred);
-
-    }
-
-
-    function payment($ad_id){
-        $this->_set_form_data();
-
-        if(!$product=$this->products_m->get($ad_id) or $product->user_id!=$this->user_id){
-            show_404();
-        }
-
-        if($product->status=='draft'){
-            switch($product->payment_type){
-                case 'bank':
-                    $this->bank_payment($product);
-                    break;
-                case 'paypal':
-                    $this->paypal_payment($product);
-                    break;
-            }
-        } else {
-            $this->template
-                    ->title($this->module_details['name'],'Pagos')
-                    ->set('ad', $product)
-                    ->build('pay_success',$this->data);
-        }
-    }
-
-
-    private function bank_payment($product){
-            $this->template
-                    ->title($this->module_details['name'],'Pagos')
-                    ->set('ad', $product)
-                    ->build('pay_instructions',$this->data);
-
-    }
-
-    private function paypal_payment($product){
-
-    }
-
-
-
 
     /******** images  ********/
 
-    public function thumb($ad_id){
-
-        if($img=$this->products_images_m->get_ad_first($ad_id)){
-            return $this->image($img->id,96,96);
+    public function thumbnail($filename){
+        if($img=$this->products_images_m->get_by('filename',$filename)){
+            return $this->image($img->id,273,1000);
         } else {
             header('Content-type: image/gif');
             readfile(FCPATH .'addons/modules/products/img/noimage96.gif');
         }
     }
 
-    public function small_thumb($ad_id){
-
-        if($img=$this->products_images_m->get_ad_first($ad_id)){
-            return $this->image($img->id,77,77);
+    public function header_image($filename){
+        if($img=$this->products_images_m->get_by('filename',$filename)){
+            return $this->image($img->id,585,400);
         } else {
             header('Content-type: image/gif');
-            readfile(FCPATH .'addons/modules/products/img/noimage.gif');
+            readfile(FCPATH .'addons/modules/products/img/noimage96.gif');
         }
     }
 
-	public function slide_image($id){
-		return $this->image($id, 264, 200);
+	public function full_image($filename){
+        if($img=$this->products_images_m->get_by('filename',$filename)){
+            return $this->image($img->id,NULL,NULL);
+        } else {
+            header('Content-type: image/gif');
+            readfile(FCPATH .'addons/modules/products/img/noimage96.gif');
+        }
 	}
 
-	public function full_image($id){
-		return $this->image($id, NULL, NULL);
-	}
-
-	public function image($id, $width = 100, $height = 100){
+	public function image($id, $width, $height){
 		$this->load->model('products_images_m');
 
 		$file = $this->products_images_m->get($id) OR show_404();
@@ -390,7 +308,7 @@ class Products extends Public_Controller
 
 			// CONFIGURE IMAGE LIBRARY
 			$config['image_library']    = 'gd2';
-			$config['source_image']     = 'uploproducts/products_images/' . $file->filename;
+			$config['source_image']     = 'uploproducts/products/images/' . $file->filename;
 			$config['new_image']        = $image_thumb;
 			$config['maintain_ratio']   = TRUE;
 			$config['height']           = $height;
