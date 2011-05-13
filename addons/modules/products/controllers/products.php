@@ -60,45 +60,20 @@ class Products extends Public_Controller
             ->set('category', $category)
             ->build('category', $this->data );
 	}
-
-    public function call_special_action($category){
-        $filter=array('category'=>$category->id,'status' => 'live','starred'=>'true');
-		$this->data->products = $this->products_m->limit(6)->get_many_by($filter);
-
-		// Set meta description based on post titles
-		$meta = $this->_posts_metadata($this->data->products);
-
-        $this->data->ad_states = $this->products_m->distinct_values_by('ad_state',array('category'=>$category->id,'status' => 'live'));
-        $this->data->ad_cities = $this->products_m->distinct_values_by('ad_state, ad_city',array('category'=>$category->id,'status' => 'live'));
-
-        $this->data->ad_motor_makes = $this->products_m->distinct_values_by('ad_motor_make',array('category'=>$category->id,'status' => 'live'));
-        $this->data->ad_motor_models = $this->products_m->distinct_values_by('ad_motor_model',array('category'=>$category->id,'status' => 'live'));
-        $this->data->ad_motor_years = $this->products_m->distinct_values_by('ad_motor_year',array('category'=>$category->id,'status' => 'live'));
-
-		$this->template
-			->title($this->module_details['name'])
-            ->set_partial('ad_list', 'partials/starred_list')
-            ->set_partial('search_form', 'partials/' . $category->special_action)
-			->set_breadcrumb( lang('products_products_title'))
-			->set_metadata('description', $meta['description'])
-			->set_metadata('keywords', $meta['keywords'])
-            ->set('category',$category)
-			->build('special_category', $this->data);
-    }
 	
 	// Public: View an ad
-	public function view($id = '')
+	public function view($slug = '')
 	{	
-		if ( ! $id or ! $product = $this->products_m->get($id))
+		if ( ! $slug or ! $product = $this->products_m->get_by('slug', $slug))
 		{
-			redirect('products');
+			show_404();
 		}
 		
 		if ($product->status != 'live' && ! $this->ion_auth->is_admin())
 		{
-			redirect('products');
+			show_404();
 		}
-		
+
 		// Grab its category
 		if ($product->product_category_id && ($category = $this->products_categories_m->get($product->product_category_id)))
 		{
@@ -112,22 +87,15 @@ class Products extends Public_Controller
 			$product->category->title = '';
 		}
 
-
-		if($query	= $this->products_images_m->get_images_by_ad($product->id)) {
-            $ad_images=$query->result();
+		if($query	= $this->products_images_m->get_images($product->id)) {
+            $product_images=$query->result();
         } else {
-            $ad_images=array();
+            $product_images=array();
         }
-
-        $categories_fields= $this->products_fields_m->get_with_category();
-
 		
 		$this->session->set_flashdata(array('referrer' => $this->uri->uri_string));
 
 		$this->template->title($product->title, lang('products_products_title'))
-            ->append_metadata( js('jquery.popeye-2.0.4.min.js', 'products') )
-            ->append_metadata( css('jquery.popeye.css', 'products') )
-            ->append_metadata( css('jquery.popeye.style.css', 'products') )
 			->set_metadata('keywords', $product->category->title.' '.$product->title)
 			->set_breadcrumb(lang('products_products_title'), 'products');
 		
@@ -138,9 +106,9 @@ class Products extends Public_Controller
 		
 		$this->template
 			->set_breadcrumb($product->title)
-			->set('ad', $product)
-			->set('categories_fields', $categories_fields)
-            ->set('ad_images', $ad_images)
+            ->set_partial('detail_1_thumbs', 'partials/detail_1_thumbs')
+			->set('product', $product)
+            ->set('product_images', $product_images)
 			->build('view', $this->data);
 	}	
 

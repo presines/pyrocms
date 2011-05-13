@@ -1,12 +1,12 @@
 <?php  defined('BASEPATH') OR exit('No direct script access allowed');
 class Products_images_m extends MY_Model {
 
-	protected $_table = 'products_images';
-    protected $images_folder='uploproducts/products_images';
+	protected $_table = 'product_images';
+    protected $images_folder='uploads/products/images';
 
 
     public function get_images($product_id){
-		$this->db->where(array('$product_id' => $product_id));
+		$this->db->where(array('product_id' => $product_id));
 		return $this->db->get($this->_table);
     }
 
