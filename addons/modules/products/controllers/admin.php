@@ -548,7 +548,7 @@ class Admin extends Admin_Controller {
 							'name'	=> $file['file_name'],
 							'type'	=> $file['file_type'],
 							'size'	=> $file['file_size'],
-							'thumb'	=> base_url() . 'files/thumb/' . $id . '/80'
+                            'id'    => $id
 						)
 					)) );
 				}

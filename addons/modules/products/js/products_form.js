@@ -104,7 +104,7 @@
         upload_form.fileUploadUI({
             fieldName		: 'userfile',
             uploadTable		: $('#files-uploader-queue'),
-            downloadTable	: $('#files-uploader-queue'),
+            downloadTable	: $('#product_images_list'),
             previewSelector	: '.file_upload_preview div',
             buildUploadRow	: function(files, index, handler){
                 return $('<li><div class="file_upload_preview ui-corner-all"><div class="ui-corner-all"></div></div>' +
@@ -121,7 +121,9 @@
             buildDownloadRow: function(data){
                 if (data.status == 'success')
                 {
-                    return $('<li><div>' + data.file.name + '</div></li>');
+                    return $('<li><a href="' + SITE_URL + 'admin/products/image_edit/' + data.file.id +'" class="upload_colorbox">' +
+                             '<img src="' + SITE_URL +  'products/tiny_thumbnail/' + data.file.name +'" />' +
+                             '<input type="hidden" name="action_to[]" value="' + data.file.id +'"></a></li>');
                 }
                 return false;
             },
