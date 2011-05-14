@@ -35,7 +35,6 @@ $lang['products_create_title'] 					= 'Crear un producto';
 $lang['products_edit_title'] 					= 'Editar producto "%s"';
 $lang['products_archive_title'] 				= 'Archivo';
 $lang['products_products_title'] 				= 'Productos';
-$lang['products_products_title'] 				= 'Noticias';
 $lang['products_list_title'] 					= 'Lista de productos';
 
 // messages

@@ -74,7 +74,6 @@
                 <label for="nothing"><?php echo lang('products_thumbnail_path_label'); ?></label>
                 <?php echo form_upload('thumbnail'); ?>
             </li>
-            <?php if (isset($product_images) && $product_images): ?>
             <li class="images-manage even">
                 <label for="product_images"><?php echo lang('products_images_area_label'); ?></label>
                 <p><?php echo lang('products_images_area_instructions'); ?></p>
@@ -83,7 +82,6 @@
                 </div>
                 <div class="clear-both"></div>
                 <ul id="product_images_list">
-                    <?php if ( $product_images !== FALSE ): ?>
                     <?php foreach ( $product_images as $image ): ?>
                     <li id="product-image-<?php echo $image->id; ?>">
                         <a href="<?php echo site_url() . 'admin/products/image_edit/' . $image->id; ?>" class="edit_image">
@@ -93,11 +91,9 @@
                         <a href="<?php echo site_url() . 'admin/products/image_delete/' . $image->id; ?>" class="delete_button delete_image">Eliminar</a>
                     </li>
                     <?php endforeach; ?>
-                    <?php endif; ?>
                 </ul>
                 <div class="clear-both"></div>
             </li>
-            <?php endif; ?>
 		</ol>
         <?php endif; ?>
 	</div>

@@ -70,7 +70,7 @@ div#nav {
 
 
 div#maincontainer{
-	background:#222222 url(img/mainbg.png) repeat-x;
+	background:#222222 url(../img/mainbg.png) repeat-x;
 	width:897px;
 	padding:44px;
 }
@@ -130,12 +130,12 @@ div#fptext{
 .myJac .arrow-left
 {
  left:-20px;
- background:url(img/jac-arrows.png) no-repeat center left;
+ background:url(../img/jac-arrows.png) no-repeat center left;
 }
 .myJac .arrow-right
 {
  right:-20px;
- background:url(img/jac-arrows.png) no-repeat center right;
+ background:url(../img/jac-arrows.png) no-repeat center right;
 }
 
 /* JAC Carrousel  for products*/
