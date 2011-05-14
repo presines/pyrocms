@@ -66,6 +66,30 @@ class Admin extends Admin_Controller {
 			'rules' => 'trim|numeric'
 		)
 	);
+    
+
+	private $image_validation_rules = array(
+		array(
+			'field' => 'userfile',
+			'label' => 'lang:products_img_file_label',
+			'rules' => 'callback__check_ext'
+		),
+		array(
+			'field' => 'name',
+			'label' => 'lang:products_img_name_label',
+			'rules' => 'trim|required|max_length[250]'
+		),
+		array(
+			'field' => 'description',
+			'label' => 'lang:products_img_description_label',
+			'rules' => 'trim|max_length[250]'
+		),
+		array(
+			'field' => 'type',
+			'label' => 'lang:products_img_type_label',
+			'rules' => 'trim|max_length[1]'
+		)
+	);
 
 	/**
 	 * The constructor
@@ -207,13 +231,11 @@ class Admin extends Admin_Controller {
 
 		$product = $this->products_m->get($id);
 
-
 		$this->id = $product->id;
 		$thumbnail_path=$product->thumbnail_path;
-        
+
 		if ($this->form_validation->run())
 		{
-
             // We are uploading a new file
 			if ( ! empty($_FILES['thumbnail']['name'])){
                 // Setup upload config
@@ -277,12 +299,16 @@ class Admin extends Admin_Controller {
 				$product->$field = $this->form_validation->$field;
 			}
 		}
-        $product_images=$this->products_images_m->get_images($product->id)->result();
+        $product_images=$this->products_images_m->get_images($product->id);
 		
 		// Load WYSIWYG editor
 		$this->template
 				->title($this->module_details['name'], sprintf(lang('products_edit_title'), $product->title))
 				->append_metadata($this->load->view('fragments/wysiwyg', $this->data, TRUE))
+			    ->append_metadata( css('jquery.fileupload-ui.css', 'products'))
+			    ->append_metadata( css('files.css', 'files'))
+				->append_metadata(js('jquery.fileupload.js', 'products'))
+				->append_metadata(js('jquery.fileupload-ui.js', 'products'))
 				->append_metadata(js('products_form.js', 'products'))
 				->set('product', $product)
 				->set('product_images', $product_images)
@@ -331,7 +357,7 @@ class Admin extends Admin_Controller {
 	}
 
 	/**
-	 * Publish blog post
+	 * Publish product
 	 * @access public
 	 * @param int $id the ID of the blog post to make public
 	 * @return void
@@ -436,6 +462,148 @@ class Admin extends Admin_Controller {
 		redirect('admin/products');
 	}
 
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * Upload
+	 *
+	 * Upload a file to the destination folder
+	 *
+	 * @params int	The folder id
+	 */
+	public function upload($product_id = 0){
+		$this->load->library('form_validation');
+        $this->form_validation->set_rules($this->image_validation_rules);
+
+		if ($this->form_validation->run())
+		{
+			// Setup upload config
+			$this->load->library('upload', array(
+				'upload_path'	=> 'uploads/products/images',
+				'allowed_types'	=> $this->_ext
+			));
+
+			// File upload error
+			if ( ! $this->upload->do_upload('userfile'))
+			{
+				$status		= 'error';
+				$message	= $this->upload->display_errors();
+
+				if ($this->is_ajax())
+				{
+					$data = array();
+					$data['messages'][$status] = $message;
+					$message = $this->load->view('admin/partials/notices', $data, TRUE);
+
+					return print( json_encode((object) array(
+						'status'	=> $status,
+						'message'	=> $message
+					)) );
+				}
+
+				$this->data->messages[$status] = $message;
+			}
+
+			// File upload success
+			else
+			{
+				$file = $this->upload->data();
+				$data = array(
+					'product_id'	=> (int) $product_id,
+					'name'			=> $this->input->post('name'),
+					'description'	=> $this->input->post('description') ? $this->input->post('description') : '',
+					'filename'		=> $file['file_name'],
+					'extension'		=> $file['file_ext'],
+					'mimetype'		=> $file['file_type'],
+					'filesize'		=> $file['file_size'],
+					'width'			=> (int) $file['image_width'],
+					'height'		=> (int) $file['image_height'],
+					'date_added'	=> now()
+				);
+
+				// Insert success
+				if ($id = $this->products_images_m->insert($data))
+				{
+					$status		= 'success';
+					$message	= lang('product_img_create_success');
+				}
+				// Insert error
+				else
+				{
+					$status		= 'error';
+					$message	= lang('product_img_create_error');
+				}
+
+				if ($this->is_ajax())
+				{
+					$data = array();
+					$data['messages'][$status] = $message;
+					$message = $this->load->view('admin/partials/notices', $data, TRUE);
+
+					return print( json_encode((object) array(
+						'status'	=> $status,
+						'message'	=> $message,
+						'file'		=> array(
+							'name'	=> $file['file_name'],
+							'type'	=> $file['file_type'],
+							'size'	=> $file['file_size'],
+							'thumb'	=> base_url() . 'files/thumb/' . $id . '/80'
+						)
+					)) );
+				}
+
+				if ($status === 'success')
+				{
+					$this->session->set_flashdata($status, $message);
+					redirect('admin/products/edit/' . $product_id);
+				}
+			}
+		}
+		elseif (validation_errors())
+		{
+			// if request is ajax return json data, otherwise do normal stuff
+			if ($this->is_ajax())
+			{
+				$message = $this->load->view('admin/partials/notices', array(), TRUE);
+
+				return print( json_encode((object) array(
+					'status'	=> 'error',
+					'message'	=> $message
+				)) );
+			}
+		}
+
+		if ($this->is_ajax())
+		{
+			// todo: debug errors here
+			$status		= 'error';
+			$message	= 'unknown';
+
+			$data = array();
+			$data['messages'][$status] = $message;
+			$message = $this->load->view('admin/partials/notices', $data, TRUE);
+
+			return print( json_encode((object) array(
+				'status'	=> $status,
+				'message'	=> $message
+			)) );
+		}
+
+		// Loop through each validation rule
+		foreach ($this->_validation_rules as $rule)
+		{
+			$this->data->file->{$rule['field']} = set_value($rule['field']);
+		}
+
+		$this->template
+			->title()
+			->build('admin/products/upload', $this->data);
+	}
+
+	// ------------------------------------------------------------------------
+
+
 	/**
 	 * Callback method that checks the title of an post
 	 * @access public
@@ -528,4 +696,36 @@ class Admin extends Admin_Controller {
         }
     }
     
+
+    /**
+     * Validate upload file name and extension.
+     */
+    function _check_ext()
+    {
+        if ( ! empty($_FILES['userfile']['name']))
+        {
+            $ext		= pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
+            $allowed	= array('bmp', 'gif', 'jpeg', 'jpg', 'jpe', 'png', 'tiff', 'tif');
+
+            if (in_array(strtolower($ext), $allowed)){
+                $this->_type	= 'i';
+                $this->_ext		= implode('|', $allowed);
+
+            }
+
+            if ( ! $this->_ext)
+            {
+                $this->form_validation->set_message('_check_ext', lang('files.invalid_extension'));
+                return FALSE;
+            }
+        }
+        elseif ($this->method === 'upload')
+        {
+            $this->form_validation->set_message('_check_ext', lang('files.upload_error'));
+            return FALSE;
+        }
+
+        return TRUE;
+    }
 }
+

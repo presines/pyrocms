@@ -7,7 +7,8 @@ class Products_images_m extends MY_Model {
 
     public function get_images($product_id){
 		$this->db->where(array('product_id' => $product_id));
-		return $this->db->get($this->_table);
+        $this->db->order_by('ordering','ASC');
+		return $this->db->get($this->_table)->result();
     }
 
 	// ------------------------------------------------------------------------

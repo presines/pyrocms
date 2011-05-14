@@ -19,7 +19,8 @@ $lang['products_options_label'] 				= 'Opciones';
 $lang['products_title_label'] 					= 'Título';
 $lang['products_slug_label'] 					= 'URL';
 $lang['products_thumbnail_path_label'] 			= 'Thumbnail';
-$lang['products_images_area_label']			        = 'Imágenes (arrastre y suelte para ordenar, click para editar)';
+$lang['products_images_area_label']			    = 'Imágenes';
+$lang['products_images_area_instructions']		= '(arrastre y suelte para ordenar, click para editar)';
 $lang['product_description_label'] 				= 'Introducción';
 $lang['products_draft_label'] 					= 'Borrador';
 $lang['products_live_label'] 					= 'Publicado';
@@ -63,6 +64,8 @@ $lang['products_img_name_label'] 					= 'Nombre';
 $lang['products_img_description_label'] 			= 'Descripción';
 $lang['products_img_type_label'] 					= 'Tipo';
 $lang['products_img_product_label'] 				= 'Producto';
+$lang['product_img_create_success'] 				= 'Se ha subido la imagen.';
+$lang['product_img_create_error'] 				    = 'Ha ocurrido un error al subir la imagen.';
 
 /* End of file products_lang.php */
 /* Location: ./system/pyrocms/modules/blog/language/spanish/products_lang.php */

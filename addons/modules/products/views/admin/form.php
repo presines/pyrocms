@@ -4,6 +4,22 @@
 		<h3><?php echo sprintf(lang('products_edit_title'), $product->title); ?></h3>
 <?php endif; ?>
 
+<div class="hidden">
+	<div id="files-uploader">
+		<div class="files-uploader-browser">
+			<?php echo form_open_multipart('admin/products/upload/' . $product->id ); ?>
+				<label for="userfile" class="upload">Subir Archivos</label>
+				<?php echo form_upload('userfile', NULL, 'class="no-uniform" multiple="multiple"'); ?>
+			<?php echo form_close(); ?>
+			<ul id="files-uploader-queue" class="ui-corner-all"></ul>
+		</div>
+		<div class="buttons align-right padding-top">
+			<a href="#" title="" class="button start-upload"><?php echo 'Subir'; ?></a>
+			<a href="#" title="" class="button cancel-upload"><?php echo 'Cancelar';?></a>
+		</div>
+	</div>
+</div>
+
 <?php echo form_open_multipart(uri_string(), 'class="crud"'); ?>
 
 <div class="tabs">
@@ -61,6 +77,10 @@
             <?php if (isset($product_images) && $product_images): ?>
             <li class="images-manage even">
                 <label for="product_images"><?php echo lang('products_images_area_label'); ?></label>
+                <p><?php echo lang('products_images_area_instructions'); ?></p>
+                <div class="buttons buttons-small">
+                    <a href="<?php echo site_url() . 'admin/products/upload/' . $product->id ?>" class="button upload open-files-uploader">Subir Archivos</a>
+                </div>
                 <div class="clear-both"></div>
                 <ul id="product_images_list">
                     <?php if ( $product_images !== FALSE ): ?>
@@ -77,15 +97,6 @@
                 <div class="clear-both"></div>
             </li>
             <?php endif; ?>
-            
-            <li style="display: none;" class="images-placeholder">
-                <label for="product_images"><?php echo lang('products_preview_label'); ?></label>
-                <div class="clear-both"></div>
-                <ul id="product_images_list">
-
-                </ul>
-                <div class="clear-both"></div>
-            </li>
 		</ol>
         <?php endif; ?>
 	</div>
@@ -95,5 +106,4 @@
 <div class="buttons float-right padding-top">
 	<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'save_exit', 'cancel'))); ?>
 </div>
-
 <?php echo form_close(); ?>
