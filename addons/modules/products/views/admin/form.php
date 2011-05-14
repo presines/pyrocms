@@ -85,11 +85,12 @@
                 <ul id="product_images_list">
                     <?php if ( $product_images !== FALSE ): ?>
                     <?php foreach ( $product_images as $image ): ?>
-                    <li>
-                        <a href="<?php echo site_url() . 'admin/products/image_edit/' . $image->id; ?>" class="upload_colorbox">
+                    <li id="product-image-<?php echo $image->id; ?>">
+                        <a href="<?php echo site_url() . 'admin/products/image_edit/' . $image->id; ?>" class="edit_image">
                             <img src="<?php echo site_url() . 'products/tiny_thumbnail/' . $image->filename; ?> " alt="<?php echo $image->name ?>" title="<?php echo 'Title: ' . $image->name; ?>" />
                             <?php echo form_hidden('action_to[]', $image->id); ?>
                         </a>
+                        <a href="<?php echo site_url() . 'admin/products/image_delete/' . $image->id; ?>" class="delete_button delete_image">Eliminar</a>
                     </li>
                     <?php endforeach; ?>
                     <?php endif; ?>

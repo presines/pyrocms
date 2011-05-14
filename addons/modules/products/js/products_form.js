@@ -13,7 +13,7 @@
 
 		// Files -------------------------------------------------------
 
-		$(".edit_file").livequery(function(){
+		$(".edit_image").livequery(function(){
 			$(this).colorbox({
 				scrolling	: false,
 				width		: '600',
@@ -82,6 +82,43 @@
 				onClosed: function(){}
 			});
 		});
+        
+        $('a.delete_image').live('click', function(e){
+            e.preventDefault();
+
+            var href        = $(this).attr('href'),
+                removemsg   = $(this).attr('title'),
+				data	    = '';
+
+            if (confirm('¿Desea borrar la imagen?'))
+            {
+                $(this).trigger('click-confirmed');
+
+                if ($.data(this, 'stop-click')){
+                    $.data(this, 'stop-click', false);
+                    return;
+                }
+
+                $.post(href, data, function(data){
+					if (data.status == 'success')
+					{
+                        var item=$('#product-image-'+data.id)
+						var callback_remove_thumbnail = function(){
+							item.fadeOut();
+							item.remove();
+						};
+
+						pyro.add_notification(data.message, {ref: '#cboxLoadedContent', method: 'prepend'});
+                        item.fadeOut();
+                        item.remove();
+					}
+					else if (data.status == 'error')
+					{
+						pyro.add_notification(data.message, {ref: '#cboxLoadedContent', method: 'prepend'});
+					}
+				}, 'json');
+            }
+        });
 
 		$('.open-files-uploader').livequery(function(){
 			$(this).colorbox({
@@ -121,7 +158,7 @@
             buildDownloadRow: function(data){
                 if (data.status == 'success')
                 {
-                    return $('<li><a href="' + SITE_URL + 'admin/products/image_edit/' + data.file.id +'" class="upload_colorbox">' +
+                    return $('<li id="product-image-' + data.file.id +'"><a href="' + SITE_URL + 'admin/products/image_edit/' + data.file.id +'" class="edit_colorbox">' +
                              '<img src="' + SITE_URL +  'products/tiny_thumbnail/' + data.file.name +'" />' +
                              '<input type="hidden" name="action_to[]" value="' + data.file.id +'"></a></li>');
                 }

@@ -603,6 +603,49 @@ class Admin extends Admin_Controller {
 
 	// ------------------------------------------------------------------------
 
+    /**
+     * Delete a file
+     *
+     * @params 	int The file id
+     */
+    public function image_delete($id = 0)
+    {
+
+        // Get the row to use a value.. as title, name
+        if ($file = $this->products_images_m->get($id))
+        {
+            if(!$this->products_images_m->delete($id)){
+				$status		= 'error';
+				$message	= lang('product_img_delete_error');
+
+
+            } else {
+					$status		= 'success';
+					$message	= lang('product_img_delete_success');
+            }
+        }
+
+
+		if ($this->is_ajax())
+		{
+
+			$data = array();
+			$data['messages'][$status] = $message;
+
+			$message = $this->load->view('admin/partials/notices', $data, TRUE);
+
+			return print( json_encode((object) array(
+				'status'	=> $status,
+				'message'	=> $message,
+                'id' => $id
+			)) );
+		}
+
+        $this->session->set_flashdata($status, $message);
+        // Redirect
+        redirect('admin/products/edit/' . $file->product_id . '#products-images-tab');
+    }
+
 
 	/**
 	 * Callback method that checks the title of an post

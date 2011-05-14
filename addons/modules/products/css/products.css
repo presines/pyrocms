@@ -44,3 +44,15 @@ form.crud ul li div
 	border: 	1px solid #9c9fa1;
 	cursor:		default;
 }
+
+a.delete_button {
+    background: url("../img/delete_button.png");
+    display:block;
+    width:18px;
+    height:18px;
+    text-indent: -9999999px;
+    overflow:hidden;
+    position:relative;
+    top:-112px;
+    left:-5px;
+}

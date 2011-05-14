@@ -66,6 +66,8 @@ $lang['products_img_type_label'] 					= 'Tipo';
 $lang['products_img_product_label'] 				= 'Producto';
 $lang['product_img_create_success'] 				= 'Se ha subido la imagen.';
 $lang['product_img_create_error'] 				    = 'Ha ocurrido un error al subir la imagen.';
+$lang['product_img_delete_success'] 				= 'Se ha eliminado la imagen.';
+$lang['product_img_delete_error'] 				    = 'Ha ocurrido un error al eliminar la imagen.';
 
 /* End of file products_lang.php */
 /* Location: ./system/pyrocms/modules/blog/language/spanish/products_lang.php */
