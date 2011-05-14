@@ -1,7 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 # labels
+$lang['cat_parent_label'] 		= 'Categoría superior';
 $lang['cat_title_label'] 			= 'Título';
+$lang['products_slug_label'] 					= 'URL';
 $lang['cat_category_label'] 		= 'Categoría';
 $lang['cat_actions_label'] 			= 'Acciones';
 $lang['cat_edit_label'] 			= 'Editar';
